@@ -18,6 +18,14 @@ bot.on('message', message=> {
     message.reply("Bonjour ! :nerd:");
     console.log("Commande exécuté : Salut");
     }
+    if(message.content === prefix + "invite"){
+    message.reply("https://discordapp.com/oauth2/authorize?client_id=560003407100903424&scope=bot&permissions=2146958847");
+    console.log("Commande exécuté : Invite");
+    }
+    if(message.content === prefix + "beingstart"){
+        message.channel.send("@everyone **Le tournoi est sur le point de commencer !!! Préparez votre PC !**");
+        console.log("Commande exécuté : beingstart");
+    }
     if(message.content === prefix + "help"){
         console.log("Commande exécuté : help")
         var help = new Discord.RichEmbed()
@@ -34,14 +42,23 @@ bot.on('message', message=> {
     if(message.content === prefix + "yt"){
         console.log("Commande exécuté : yt")
         var chaineyt = new Discord.RichEmbed()
-            .setTitle("Chaîne YouTube de DelTTΔriΔ")
-            .setDescription("Voici la chaîne Youtube du serveur. Trailer, musique du serveur et des vidéos y seront postés !")
             .setColor("0x0101DF")
-            .addField("Chaîne YouTube" , "Suivez la chaîne Youtube du serveur [DelTTΔriΔ](https://www.youtube.com/channel/UCoRIwjrUoajmejlVA-0e4fA?disable_polymer=true)" , true)
+            .addField("Chaîne YouTube de DelTTΔriΔ" , "Suivez la chaîne Youtube du serveur [DelTTΔriΔ](https://www.youtube.com/channel/UCoRIwjrUoajmejlVA-0e4fA?disable_polymer=true)" , true)
             .setThumbnail('https://cdn.discordapp.com/attachments/511579258641186837/558766204328607781/Logo_deltaria.png')
         message.channel.send(chaineyt)
 
     }
+    if(message.content === prefix + "autreserv"){
+        console.log("Commande exécuté : autre serveur")
+        var chaineyt = new Discord.RichEmbed()
+            .setTitle("Autres serveurs")
+            .setColor("0xFACC2E")
+            .addField("DelTTΔriΔ" , "Un serveur où tout est cosi, une économie, des salons vocaux, des salons textuels... C'est aussi notre serveur principal !\n[DelTTΔriΔ](https://discord.gg/jWnP7ES)\n " , true)
+            .addField("No Limit" , "Un serveur où tu fais **CE QUE TU VEUX** (créer des salons, utiliser du vocabulaire grossier...) Bref, no règles !\n[No Limit](https://discord.gg/YHVt4uB)\n " , true)
+            .addField("TT Services" , "Un serveur où tu peux demander nos services : logo, teaser, musique, aide auu développement... **TU** demandes, **ON** fait !\n[TT Services](https://discord.gg/ZGUdVHa)\n" , true)
+        message.channel.send(chaineyt)
+
+    }  
     if(message.content === prefix + "pbowling"){
         console.log("Commande exécuté : pbowling")
         var pistebowling = new Discord.RichEmbed()
@@ -69,13 +86,13 @@ bot.on('message', message=> {
             .setDescription("Voici une table de billard, tout ce qu'il y a de plus normal !")
             .setImage("https://www.mon-billard.com/blog/wp-content/uploads/2018/10/billiard-americain-placement-boules.jpg")
             .setColor("0xF7FE2E")
-            .setFooter("Utilise " + prefix + " billard pour jouer au billard")
+            .setFooter("P.S: Cela peuut prendre un certain temps")
         message.channel.send(tablebillard)
 
     }
     if(message.content === prefix + "bowling"){
         console.log("Commande exécuté : bowling")
-        var nbquilles = Math.floor(Math.random() * 11)
+        var nbquilles = Math.floor(Math.random() * 13)
         var FBowling = new Discord.RichEmbed()
             .setColor('0xDF013A')
             .setTitle(':bowling:  Dommage  :bowling:')
@@ -84,8 +101,8 @@ bot.on('message', message=> {
         var SBowling = new Discord.RichEmbed()
             .setColor('0x01DF01')
             .setTitle(':bowling:  **S T R I K E**  :bowling:')
-            .addField("Tu as fait un strike !", "Tu as renversé " + nbquilles + " quilles !", true)
-        if(nbquilles == 10){
+            .addField("Tu as fait un strike !", "Tu as renversé 10 quilles !", true)
+        if(nbquilles >= 10){
             message.channel.send(SBowling)
             console.log('Résultat : STRIKE')
         }else{
@@ -123,5 +140,5 @@ bot.login(process.env.TOKEN)
 bot.on('guildMemberAdd', function (member) {
     member.createDM().then(function (channel) {
         return channel.send('Bienvenue sur le serveur DelTTAriA ' + member.displayName)
-    }.catch(console.error)
+    }
 )})
